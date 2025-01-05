@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gujarati BPE Tokenizer</title>
+    <script>
+        async function encode() {
+            const text = document.getElementById("inputText").value;
+            document.getElementById("originalSentence").innerText = text;
+            const response = await fetch("/encode", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ text })
+            });
+            const data = await response.json();
+            document.getElementById("encodedTokens").innerText = data.encoded_tokens;
+            document.getElementById("originalTokens").innerText = data.encoded_tokens;
+        }
+
+        async function decode() {
+            const tokens = document.getElementById("inputTokens").value;
+            document.getElementById("inputTokensDisplay").innerText = tokens;
+            const response = await fetch("/decode", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ tokens })
+            });
+            const data = await response.json();
+            document.getElementById("decodedText").innerText = data.decoded_text;
+        }
+
+        function resetFields() {
+            document.getElementById("inputText").value = '';
+            document.getElementById("inputTokens").value = '';
+            document.getElementById("encodedTokens").innerText = '';
+            document.getElementById("originalSentence").innerText = '';
+            document.getElementById("decodedText").innerText = '';
+            document.getElementById("inputTokensDisplay").innerText = '';
+        }
+    </script>
+</head>
+<body>
+    <h1>Basic Gujarati BPE Tokenizer (5000 Vocab)</h1>
+    <h2>Encode Text</h2>
+    <input type="text" id="inputText" placeholder="Enter text to encode...">
+    <button onclick="encode()">Encode</button>
+    <p>Encoded Tokens: <span id="encodedTokens"></span></p>
+    <p>Original Sentence: <span id="originalSentence"></span></p>
+    
+    <h2>Decode Tokens</h2>
+    <input type="text" id="inputTokens" placeholder="Enter tokens to decode...">
+    <button onclick="decode()">Decode</button>
+    <p>Decoded Text: <span id="decodedText"></span></p>
+    <p>Original Tokens Inputted: <span id="inputTokensDisplay"></span></p>
+
+    <button onclick="resetFields()">Reset All</button>
+</body>
+</html>
