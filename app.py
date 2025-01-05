@@ -37,6 +37,7 @@ async def read_root():
 @app.post("/encode")
 async def encode_text(request: EncodeRequest):
     """Encodes the input text and returns the tokens."""
+    print("request.text: ", request.text)
     return {"encoded_tokens": tokenizer.encode(request.text)}
 
 @app.post("/decode")
@@ -45,7 +46,5 @@ async def decode_tokens(request: DecodeRequest):
     print(request.tokens)
     tokens = request.tokens.split(',')
     tokens = list(map(int, tokens))
-    print(tokens, [type(token) for token in tokens])
-    print(tokens)
     decoded_text = tokenizer.decode(tokens)
     return {"decoded_text": decoded_text}
