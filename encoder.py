@@ -42,6 +42,7 @@ class BPEGujaratiTokenizer:
 
     def train_bpe(self, corpus, max_vocab_size, sample_size=None):
         self.vocab = {idx: bytes([idx]) for idx in range(256)}
+        print(f"before training vocab {len(self.vocab)}")
         if sample_size :
             corpus = corpus[:sample_size]
         num_merges = max_vocab_size - len(self.vocab)
@@ -65,6 +66,7 @@ class BPEGujaratiTokenizer:
         print(f"After training: ids length: {len(ids)}")
         print(f"After training: tokens length: {len(tokens)}")
         print("After training: merges length: ", len(self.merges))
+        print(f"After training vocab {len(self.vocab)}")
         print(f"compression ratio: {len(tokens) / len(ids):.2f}X")
         return self.vocab, self.merges
 

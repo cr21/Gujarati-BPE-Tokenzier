@@ -266,6 +266,17 @@ if __name__ == "__main__":
 ```
 
 ```
+before training vocab 256
+Before training: ids length: 51088
+Before training: tokens length: 51088
+Before training: merges length:  0
+After training: ids length: 2247
+After training: tokens length: 51088
+After training: merges length:  4744
+After training vocab 5000
+compression ratio: 22.74X
+Time taken to train: 12.605944156646729 seconds
+--------------------------------
 [292, 310, 164, 290, 363, 329, 325, 310, 155, 600]
 Time taken to encode: 0.0006651878356933594 seconds
 --------------------------------
