@@ -90,7 +90,7 @@ class BPEGujaratiTokenizer:
 import time
 if __name__ == "__main__":
     start_time = time.time()
-    tokenizer = BPEGujaratiTokenizer(corpus_path="gu_corpus.txt", max_vocab_size=5000, sample_size=20000)
+    tokenizer = BPEGujaratiTokenizer(corpus_path="gu_corpus.txt", max_vocab_size=5000, sample_size=150000)
     end_time = time.time()
     print(f"Time taken to train: {end_time - start_time} seconds")
     print("--------------------------------")
